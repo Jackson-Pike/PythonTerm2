@@ -3,7 +3,7 @@
 import random
 
 
-def menu() -> object:
+def menu():
     print("Hello! Welcome to Jackson Pike's Guess My Number Game\nEnter Option:\n1. Play Game")
     print("2. Custom Game\n3. Credits\n4. Exit")
     menu_choice = input()
@@ -25,6 +25,7 @@ def guess_number(number, attempts, attempts_completed):
         if usr_guess.isdigit() and usr_guess != number:
             usr_guess = int(usr_guess)
             attempts -= 1
+            attempts_completed += 1
             if usr_guess > number:
                 print("Sorry! Your guess was too high, try a lower guess.")
                 print("You have", attempts, "attempts left.")
@@ -39,11 +40,13 @@ def guess_number(number, attempts, attempts_completed):
         else:
             print("Invalid input! Please enter a whole number.")
             guess_number(number, attempts, attempts_completed)
-    guess_number_loose()
+    if attempts_completed == 0:
+        guess_number_loose()
+
+
 
 def guess_number_loose():
     print("Sorry! You took too many attempts. ")
-
 
 
 def guess_number_win():
